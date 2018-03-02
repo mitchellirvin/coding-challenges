@@ -16,10 +16,8 @@ public class Solution {
 
             for(int i = 1; i <= flavors; i++) {
                 int cost = in.nextInt();
-                if(complements.containsKey(cost))
-                    System.out.println(complements.get(cost) + " " + i);
-                else
-                    complements.put(money-cost, i);
+                if(complements.containsKey(cost)) System.out.println(complements.get(cost) + " " + i);
+                else complements.put(money - cost, i);
             }
         }
         in.close();
