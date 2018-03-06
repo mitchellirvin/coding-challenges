@@ -1,4 +1,5 @@
 // problem: https://www.hackerrank.com/contests/rookierank-4/challenges/server-room-safety/problem
+
 import java.io.*;
 import java.util.*;
 import java.text.*;
