@@ -1,2 +1,2 @@
 # Maps
-Most of these map challenges can be found [here](https://www.interviewbit.com/courses/programming/topics/heaps-and-maps/).
+Most of these map challenges can be found at  [interviewbit](https://www.interviewbit.com/courses/programming/topics/heaps-and-maps/).
