@@ -1,5 +1,8 @@
 // https://www.interviewbit.com/problems/subtract/
-
+/*
+Given linked list 1 -> 2 -> 3 -> 4 -> 5,
+You should return 4 -> 2 -> 3 -> 4 -> 5
+*/
 import java.util.*;
 
 public class SubtractFromFirstHalf {
