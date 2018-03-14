@@ -25,6 +25,30 @@ public class TwoSum {
         return new ArrayList<Integer>();
     }
 
+    // returns all possible pairs
+    public static ArrayList<ArrayList<Integer>> twoSums(ArrayList<Integer> list, int sumToFind) {
+        if(list.size() <= 1 || list == null) return new ArrayList<ArrayList<Integer>>();
+
+        HashMap<Integer, Integer> complementToIndexMap = new HashMap<>();
+        ArrayList<ArrayList<Integer>> valuePairs = new ArrayList<>();
+
+        for(int i = 0; i < list.size(); i++) {
+            if(complementToIndexMap.containsKey(list.get(i))) {
+                ArrayList<Integer> valuePair = new ArrayList<>();
+                valuePair.add(complementToIndexMap.get(list.get(i)));
+                valuePair.add(i);
+                System.out.println("Adding: " + complementToIndexMap.get(list.get(i)) + ", " + i);
+                valuePairs.add(valuePair);
+            } else {
+                if(!complementToIndexMap.containsKey(sumToFind - list.get(i))) {
+                    complementToIndexMap.put(sumToFind - list.get(i), i);
+                }
+            }
+        }
+
+        return valuePairs;
+    }
+
     public static void main(String[] args) {
       ArrayList<Integer> test = new ArrayList<>();
       test.add(4);
@@ -75,5 +99,20 @@ public class TwoSum {
       }
       System.out.println();
 
+      test.clear();
+      test.add(1);
+      test.add(0);
+      test.add(-1);
+      test.add(0);
+      test.add(-2);
+      test.add(2);
+
+      ArrayList<ArrayList<Integer>> result = twoSums(test, 0);
+      for(int i = 0; i < result.size(); i++) {
+        for(int j = 0; j < result.get(i).size(); j++) {
+          System.out.print(result.get(i).get(j) + ", ");
+        }
+        System.out.println();
+      }
     }
 }
