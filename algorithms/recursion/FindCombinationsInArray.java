@@ -1,17 +1,17 @@
 import java.util.*;
 
-public class GetCombinations {
+public class FindCombinationsInArray {
     private static ArrayList<ArrayList<Integer>> combinations;
 
-    public static ArrayList<ArrayList<Integer>> combine(int A, int B) {
-        if(B > A) return new ArrayList<ArrayList<Integer>>();
+    public static ArrayList<ArrayList<Integer>> combine(int arrayNum, int sizeOfCombo) {
+        if(sizeOfCombo > arrayNum) return new ArrayList<ArrayList<Integer>>();
         combinations = new ArrayList<>();
 
         ArrayList<Integer> list = new ArrayList<>();
-        for(int i = 1; i <= A; i++) list.add(i);
+        for(int i = 1; i <= arrayNum; i++) list.add(i);
         ArrayList<Integer> chosen = new ArrayList<>();
 
-        findCombinations(list, chosen, B);
+        findCombinations(list, chosen, sizeOfCombo);
         return combinations;
     }
 
