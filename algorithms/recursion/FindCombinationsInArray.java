@@ -41,11 +41,13 @@ public class FindCombinationsInArray {
 
     public static void main(String[] args) {
         combine(4, 2);
+
         for(ArrayList<Integer> list : combinations) {
             for(int n : list) {
                 System.out.print(n + " ");
             }
             System.out.print(" | ");
         }
+        System.out.println();
     }
 }
