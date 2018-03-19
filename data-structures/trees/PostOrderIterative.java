@@ -1,5 +1,3 @@
-import java.util.*;
-
 /*
 Description from GeeksForGeeks:
 1. Push root to first stack.
@@ -9,6 +7,8 @@ Description from GeeksForGeeks:
 3. Print contents of second stack
 */
 // https://www.interviewbit.com/problems/postorder-traversal/
+
+import java.util.*;
 
 public class PostOrderIterative {
     static class TreeNode {

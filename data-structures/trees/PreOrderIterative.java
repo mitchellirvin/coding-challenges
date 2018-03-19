@@ -1,5 +1,3 @@
-import java.util.*;
-
 /*
 Description from GeeksForGeeks:
 1) Create an empty stack nodeStack and push root node to stack.
@@ -9,6 +7,8 @@ Description from GeeksForGeeks:
 ….c) Push left child of popped item to stack
 */
 // https://www.interviewbit.com/problems/preorder-traversal/
+
+import java.util.*;
 
 public class PreOrderIterative {
     static class TreeNode {
