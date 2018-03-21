@@ -1,3 +1,11 @@
+// https://www.interviewbit.com/problems/merge-k-sorted-lists/
+
+// efficiencies: k is number of linked lists, n is num of elements per list
+// space: O(k)
+// time: O(nk Log(k)) because we iterate over each element in each linked list,
+//     and heapify take Log(k) time per iteration
+
+
 import java.util.*;
 
 public class MergeKLinkedLists {
