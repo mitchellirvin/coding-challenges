@@ -2,55 +2,31 @@ import java.util.*;
 import java.lang.*;
 
 public class InterleavingStrings {
-    public static int isInterleave(String A, String B, String C) {
+    public static boolean isInterleave(String A, String B, String C) {
         return isInterleave(A, B, C, 0, 0, 0);
     }
 
-    public static int isInterleave(String A, String B, String C, int indexA, int indexB, int indexC) {
-        printTabs(indexC);
-        System.out.println(C.charAt(indexC) + ": " + A.charAt(indexA) + ", " + B.charAt(indexB));
-
-        // base case
-        if (indexA == A.length() || indexB == B.length()) {
-            while (indexA < A.length()) {
-                if (C.charAt(indexC) == A.charAt(indexA)) {
-                    indexA++;
-                } else {
-                    return 0;
-                }
-                indexC++;
-            }
-            while (indexB < B.length()) {
-                if (C.charAt(indexC) == B.charAt(indexB)) {
-                    indexB++;
-                } else {
-                    return 0;
-                }
-                indexC++;
-            }
-            return 1;
+    public static boolean isInterleave(String A, String B, String C, int indexA, int indexB, int indexC) {
+        // base case, we've reached the end of the interleaved string
+        if(indexC == C.length()) {
+            return true;
         }
 
-        // if both chars match, try both and return true if either results in true
-        if (A.charAt(indexA) == B.charAt(indexB) && A.charAt(indexA) == C.charAt(indexC)) {
-            return Math.max(isInterleave(A, B, C, indexA + 1, indexB, indexC + 1),
-                isInterleave(A, B, C, indexA, indexB + 1, indexC + 1));
-        } else if (A.charAt(indexA) == C.charAt(indexC)) {
-            return isInterleave(A, B, C, indexA + 1, indexB, indexC + 1);
-        } else if (B.charAt(indexB) == C.charAt(indexB)) {
-            return isInterleave(A, B, C, indexA, indexB + 1, indexC + 1);
-        } else {
-            return 0;
-        }
-    }
+        boolean answer = false;
 
-    public static void printTabs(int n) {
-        for (int i = 0; i < n; i++) {
-            System.out.print("    ");
+        if (indexA < A.length() && A.charAt(indexA) == C.charAt(indexC)) {
+            answer |= isInterleave(A, B, C, indexA + 1, indexB, indexC + 1);
         }
+        if (indexB < B.length() && B.charAt(indexB) == C.charAt(indexC)) {
+            answer |= isInterleave(A, B, C, indexA, indexB + 1, indexC + 1);
+        }
+
+        return answer;
     }
 
     public static void main(String[] args) {
-        isInterleave("3TCD", "6CWA", "36TCWCDA");
+        System.out.print("Should yield 'true': ");
+        System.out.println(isInterleave("noUdRp97xFvpifeSXGwOjcVNhHo9N2D", "6iZItw9A3fj86uYx04tvWKLtl9BK",
+            "n6ioUdRpZ97ItwxF9Av3fj86upYxif0eS4XtvWKLtlG9wOBKjcVNhHo9N2D"));
     }
 }
