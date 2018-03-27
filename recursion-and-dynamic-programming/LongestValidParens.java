@@ -2,15 +2,19 @@ import java.util.*;
 
 public class LongestValidParens {
     public static int longestValidParentheses(String A) {
-        // stack to hold (s
+        // stack to hold indices of (
+        // push -1 onto stack initially
 
         // for each char in string
             // if char is ( push onto stack
                 // increment current counter
             // else
-                // if stack is empty, reset counter
-                // else pop off of stack, increment counter
-            // if curr counter > max, update max
+                // pop from stack
+                // if stack is empty
+                    // push current index
+                // else
+                    // calculate current valid length
+                    // update max IF max < curr
 
         ArrayDeque<Integer> stack = new ArrayDeque<>();
         stack.push(-1);
