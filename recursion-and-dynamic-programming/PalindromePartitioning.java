@@ -3,84 +3,6 @@
 import java.util.*;
 
 public class PalindromePartitioning {
-    static class PalindromeChecker {
-        boolean isPalindrome;
-        int startIndex;
-        int endIndex;
-        public PalindromeChecker(int index) {
-            this.isPalindrome = false;
-            this.startIndex = index;
-            this.endIndex = index;
-        }
-    }
-
-    public static int minCut(String A) {
-        // start pointer at index 0
-
-        // for each character in the String
-            // check if palindrome exists blooming from current pointer
-            // if exists
-                // if indices are non-bookends, add to hashset
-
-        HashSet<Integer> partitions = new HashSet<>();
-
-        for (int i = 0; i < A.length(); i++) {
-            System.out.println("checking for palindrome at: " + i);
-            PalindromeChecker current = getPalindrome(A, i);
-            if (current.isPalindrome) {
-                System.out.println("curr: " + current.startIndex + ", " + current.endIndex);
-                if (current.startIndex != 0) {
-                    System.out.print("Adding: " + current.startIndex);
-                    partitions.add(current.startIndex);
-                }
-                if (current.endIndex != A.length() - 1) {
-                    System.out.print("Adding: " + (current.endIndex + 1));
-                    partitions.add(current.endIndex + 1);
-                }
-                // remove indices that were added within this palindrome
-                while (i > current.startIndex) {
-                    System.out.println("removing: " + i);
-                    partitions.remove(new Integer(i));
-                    i--;
-                }
-                i = current.endIndex;
-            } else if (i > 0 && i < A.length()) {
-                System.out.print("Adding index: " + i);
-                partitions.add(i);
-            }
-        }
-
-        // System.out.println();
-        // // return size of hashset
-        // for (int n : partitions) {
-        //     System.out.print(n + " ");
-        // }
-        // System.out.println();
-        return partitions.size();
-    }
-
-    public static PalindromeChecker getPalindrome(String s, int index) {
-        int leftIndex = index;
-        int rightIndex = index + 1;
-
-        // case for odd length palindrome, ignore middle character
-        if ((leftIndex >= 0) && (rightIndex < s.length()) && (s.charAt(leftIndex) != s.charAt(rightIndex))) {
-            rightIndex++;
-        }
-
-        PalindromeChecker currPalindrome = new PalindromeChecker(index);
-
-        while ((leftIndex >= 0) && (rightIndex < s.length()) && (s.charAt(leftIndex) == s.charAt(rightIndex))) {
-            currPalindrome.isPalindrome = true;
-            currPalindrome.startIndex = leftIndex;
-            currPalindrome.endIndex = rightIndex;
-            leftIndex--;
-            rightIndex++;
-        }
-
-        return currPalindrome;
-    }
-
     public static int minPalindromePartition(String s) {
         // Get the length of the string
         int n = s.length();
@@ -106,10 +28,8 @@ public class PalindromePartitioning {
                 // end of substring
                 int j = i + subStringLength - 1;
 
-                // If subStringLength is 2, then we just need to
-                // compare two characters. Else need to
-                // check two corner characters and value
-                // of isPalindromeMatrix[i + 1][j - 1]
+                // If subStringLength is 2, then we just need to compare two characters.
+                // Else need to check the two bookend characters and value of isPalindromeMatrix[i + 1][j - 1]
                 if (subStringLength == 2) {
                     isPalindromeMatrix[i][j] = (s.charAt(i) == s.charAt(j));
                 } else {
