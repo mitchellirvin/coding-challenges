@@ -1,4 +1,5 @@
 // https://www.interviewbit.com/problems/best-time-to-buy-and-sell-stocks-i/
+// functionally the same as the max distance problem within the arrays category
 
 import java.util.*;
 
