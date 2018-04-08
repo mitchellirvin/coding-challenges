@@ -1,9 +1,8 @@
-// https://www.interviewbit.com/problems/best-time-to-buy-and-sell-stocks-i/
-// functionally the same as the max distance problem within the arrays category
-
 import java.util.*;
 
 public class BuySellStocks {
+    // https://www.interviewbit.com/problems/best-time-to-buy-and-sell-stocks-i/
+    // functionally the same as the max distance problem within the arrays category
     public static int maxProfit(final List<Integer> A) {
         if (A.isEmpty() || A == null) {
             return 0;
@@ -19,6 +18,7 @@ public class BuySellStocks {
         return maxProfit;
     }
 
+    // https://www.interviewbit.com/problems/best-time-to-buy-and-sell-stocks-ii/
     public static int maxProfitMultiTransaction(final List<Integer> A) {
         if (A.isEmpty() || A == null) {
             return 0;
