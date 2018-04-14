@@ -12,11 +12,10 @@ public class CloneGraph {
     private static HashMap<UndirectedGraphNode, UndirectedGraphNode> createdNodes;
 
     public static UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        System.out.println("Cloning graph...");
         createdNodes = new HashMap<>();
-        HashSet<Integer> visited = new HashSet<>();
         ArrayDeque<UndirectedGraphNode> queue = new ArrayDeque<>();
         queue.add(node);
-        visited.add(node.label);
 
         UndirectedGraphNode curr = null;
         while (!queue.isEmpty()) {
@@ -26,40 +25,19 @@ public class CloneGraph {
                 createdNodes.put(curr, new UndirectedGraphNode(curr.label));
             }
 
+            System.out.print("Node " + curr.label + ", neighbors: ");
             for (UndirectedGraphNode neighbor : curr.neighbors) {
-                if (!visited.contains(neighbor.label)) {
-                    queue.add(neighbor);
-                }
                 if (!createdNodes.containsKey(neighbor)) {
+                    queue.add(neighbor);
                     createdNodes.put(neighbor, new UndirectedGraphNode(neighbor.label));
                 }
-                createdNodes.get(curr).neighbors.add(createdNodes.get(neighbor));
-                visited.add(neighbor.label);
-            }
-        }
-
-        return createdNodes.get(node);
-    }
-
-    public static void printGraph(UndirectedGraphNode node) {
-        HashSet<Integer> visited = new HashSet<>();
-        ArrayDeque<UndirectedGraphNode> queue = new ArrayDeque<>();
-        queue.add(node);
-        visited.add(node.label);
-
-        UndirectedGraphNode curr = null;
-        while (!queue.isEmpty()) {
-            curr = queue.poll();
-            System.out.print("Node " + curr.label + ": ");
-            for (UndirectedGraphNode neighbor : curr.neighbors) {
-                if (!visited.contains(neighbor.label)) {
-                    queue.add(neighbor);
-                }
                 System.out.print(neighbor.label + " ");
-                visited.add(neighbor.label);
+                createdNodes.get(curr).neighbors.add(createdNodes.get(neighbor));
             }
             System.out.println();
         }
+
+        return createdNodes.get(node);
     }
 
     public static void main(String[] args) {
@@ -80,6 +58,5 @@ public class CloneGraph {
         // node3.neighbors.add(node3);
 
         UndirectedGraphNode root = cloneGraph(node1);
-        printGraph(root);
     }
 }
