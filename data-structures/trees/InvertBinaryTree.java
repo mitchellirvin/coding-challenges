@@ -15,20 +15,24 @@ public class InvertBinaryTree {
     }
 
     public static TreeNode invertTree(TreeNode A) {
-        if(A == null) return null;
-        TreeNode head = A;
-        invertTreeHelper(head);
-        return head;
+        if (A == null) {
+            return null;
+        }
+        invertTreeHelper(A);
+        return A;
     }
 
     public static void invertTreeHelper(TreeNode node) {
-        if(node.left != null && node.right != null) {
-            TreeNode temp = node.left;
-            node.left = node.right;
-            node.right = temp;
+        if (node == null) {
+            return;
         }
-        if(node.right != null) invertTreeHelper(node.right);
-        if(node.left != null) invertTreeHelper(node.left);
+        
+        TreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+
+        invertTreeHelper(node.right);
+        invertTreeHelper(node.left);
     }
 
     public static void inorderTraversal(TreeNode node) {
