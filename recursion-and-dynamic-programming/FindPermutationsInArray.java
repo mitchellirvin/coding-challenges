@@ -8,9 +8,38 @@ public class FindPermutationsInArray {
     public static ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> A) {
         permutations = new ArrayList<>();
 
-        permute(A, 0, A.size() - 1);
+        System.out.print("Finding permutations of: ");
+        System.out.println(A);
 
-        return permutations;
+        // faster and more space efficient iterative solution
+        List<LinkedList<Integer>> results = new ArrayList<LinkedList<Integer>>();
+        LinkedList<Integer> curr = new LinkedList<>();
+        curr.add(A.get(0));
+        results.add(curr);
+
+        for (int i = 1; i < A.size(); i++) {
+            // pick next int from A
+            int nextValue = A.get(i);
+            // for each LinkedList (permutation) in results
+            // place the next int at all possible positions
+            for (int j = results.size() - 1; j >= 0; j--) {
+                LinkedList<Integer> permutation = results.remove(j);
+                int size = permutation.size();
+                for (int k = 0; k <= size; k++) {
+                    permutation.add(k, nextValue);
+                    results.add(new LinkedList<Integer>(permutation));
+                    permutation.remove(k);
+                }
+            }
+        }
+
+        System.out.println(results.size() + " permutations.");
+        System.out.println(results);
+
+        return null;
+
+        // permute(A, 0, A.size() - 1);
+        // return permutations;
     }
 
     public static void printTabs(int n) {
