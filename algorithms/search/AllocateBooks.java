@@ -1,4 +1,5 @@
-//
+// https://www.interviewbit.com/problems/allocate-books/
+// https://articles.leetcode.com/the-painters-partition-problem-part-ii/
 
 import java.util.*;
 
