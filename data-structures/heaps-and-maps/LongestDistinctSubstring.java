@@ -5,27 +5,21 @@ import java.util.*;
 public class LongestDistinctSubstring {
     public static int lengthOfLongestSubstring(String A) {
         int longestSubstring = 1;
-        int front = 0;
-        int back = 0;
+        int start = 0;
 
         HashSet<Character> window = new HashSet<>();
 
-        while (front < A.length()) {
-            longestSubstring = Math.max(longestSubstring, front - back);
-
-            if (window.contains(A.charAt(front))) {
-                while (A.charAt(back) != A.charAt(front) && back < front) {
-                    window.remove(A.charAt(back));
-                    back++;
-                }
-                back++;
+        for (char c : A.toCharArray()) {
+            while (window.contains(c)) {
+                window.remove(A.charAt(start));
+                start++;
             }
 
-            window.add(A.charAt(front));
-            front++;
+            window.add(c);
+            longestSubstring = Math.max(longestSubstring, window.size());
         }
 
-        return Math.max(longestSubstring, front - back);
+        return longestSubstring;
     }
 
     public static void main(String[] args) {
