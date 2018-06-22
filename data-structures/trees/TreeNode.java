@@ -24,4 +24,20 @@ public class TreeNode {
         System.out.print(node.val + " ");
         inOrderHelper(node.right);
     }
+
+    public void preOrder() {
+        System.out.print("Pre Order: ");
+        preOrderHelper(this);
+        System.out.println();
+    }
+
+    private void preOrderHelper(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+
+        System.out.print(node.val + " ");
+        preOrderHelper(node.left);
+        preOrderHelper(node.right);
+    }
 }
