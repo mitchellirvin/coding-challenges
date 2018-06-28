@@ -26,10 +26,6 @@ public class ProductArray {
     }
 
     public static int[] withoutDivision(int[] input) {
-        if (input.length <= 2) {
-            return input;
-        }
-
         int[] productsFromLeft = new int[input.length];
         int[] productsFromRight = new int[input.length];
 
@@ -65,11 +61,21 @@ public class ProductArray {
         int[] input = {1, 2, 3, 4, 5};
         System.out.print("For input: ");
         printArray(input);
-        
+
         System.out.print("    withDivision() yields: ");
         printArray(withDivision(input));
 
         System.out.print("    withoutDivision() yields: ");
-        printArray(withDivision(input));
+        printArray(withoutDivision(input));
+
+        int[] input2 = {1, 2};
+        System.out.print("For input: ");
+        printArray(input2);
+
+        System.out.print("    withDivision() yields: ");
+        printArray(withDivision(input2));
+
+        System.out.print("    withoutDivision() yields: ");
+        printArray(withoutDivision(input2));
     }
 }
