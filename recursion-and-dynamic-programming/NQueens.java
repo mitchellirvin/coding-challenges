@@ -17,6 +17,7 @@ public class NQueens {
         // base case, row == size of board
         if (row == numberOfQueens) {
             solutions.add(new ArrayList<String>(board));
+            return;
         }
 
         // iterate over row
