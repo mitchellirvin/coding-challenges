@@ -1,4 +1,4 @@
-//
+// https://www.interviewbit.com/problems/container-with-most-water/
 
 import java.util.*;
 
@@ -27,6 +27,6 @@ public class ContainersWithMostWater {
         containers.add(4);
         containers.add(3);
         System.out.println("Coordinates: 0,1 - 1,5 - 2,4 - 3,3.");
-        System.out.println("Max water to hold: " + maxArea(containers)); 
+        System.out.println("Max water to hold: " + maxArea(containers));
     }
 }
