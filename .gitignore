@@ -3,4 +3,4 @@
 *.iml
 ./**/*.class
 ./**/*.iml
-./.idea
+.idea/
