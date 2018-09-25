@@ -1,21 +1,17 @@
-// DiningPhiliphers.java (skeleton)
-//
-// - a classic synchronization problem
-//
-// Skeleton by Dave Small on 200506.15 [based on DiningPhiliphers.java v4.0]
+// Dining Philosophers- a classic synchronization problem
+// Built based on skeleton by Dave Small on 200506.15
+// [based on DiningPhiliphers.java v4.0]
 
 import java.util.Random;
 
-//================================================ class DiningPhilosophers
 class DiningPhilosophers {
 
   public static void main(String[] arg) {
-    new DiningPhilosophers(10, 300000);
+    new DiningPhilosophers(5, 10000);
   }
 
   private String[] name = {"Seneca", "Aristotle", "Epicurius", "Voltaire",
-      "Kant", "Machiavelli", "Nietzsche", "Socrates",
-      "Frege", "Hume"};
+      "Kant", "Machiavelli", "Nietzsche", "Socrates", "Frege", "Hume"};
 
   private Philosopher[] thinkers;
   private Chopstick[] chopsticks;
