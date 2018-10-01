@@ -21,9 +21,9 @@ public class Consumer<E> extends Thread {
 
     private int id;
     private int quota;
-    private BoundedBuffer buffer;
+    private BoundedBuffer<Item> buffer;
 
-    Consumer(int id, int quota, BoundedBuffer buffer) {
+    Consumer(int id, int quota, BoundedBuffer<Item> buffer) {
         this.id = id;
         this.quota = quota;
         this.buffer = buffer;
@@ -32,10 +32,10 @@ public class Consumer<E> extends Thread {
     public void run() {
         try {
             while (quota > 0) {
-                E item = buffer.remove(this);
+                Item item = buffer.remove(this);
                 quota--;
             }
-            System.out.println("Consumer finished consuming: " + 20 + " items");
+            System.out.println(toString() + " FINISHED consuming: " + 20 + " items");
         } catch (InterruptedException e) {
             System.out.println(this.toString() + " was interrupted");
         }

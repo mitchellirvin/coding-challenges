@@ -29,26 +29,24 @@ public class BoundedBuffer<E> {
         size = 0;
     }
 
-    // producer should insert until buffer is full
     public synchronized void insert(E item, Producer producer) throws InterruptedException {
         try {
             while (size == buffer.length) {
-                System.out.println(producer.toString() + " waiting to insert item "
+                System.out.println(producer.toString() + " waiting to insert "
                     + item.toString());
                 wait();
             }
 
             buffer[size] = item;
             size++;
-            System.out.println(producer.toString() + " inserted item " + item.toString()
+            System.out.println(producer.toString() + " inserted " + item.toString()
                 + " (" + size + " of " + buffer.length + " slots full)");
-            notify();
+            notifyAll();
         } catch (InterruptedException e) {
             throw e;
         }
     }
 
-    // consumer should remove until buffer is empty
     public synchronized E remove(Consumer consumer) throws InterruptedException {
         E removedItem = null;
 
@@ -58,10 +56,11 @@ public class BoundedBuffer<E> {
                 wait();
             }
 
-            removedItem = buffer[size];
+            removedItem = buffer[size - 1];
             size--;
-            System.out.println(consumer.toString() + " removed item " + removedItem.toString()
+            System.out.println(consumer.toString() + " removed " + removedItem.toString()
                 + " (" + size + " of " + buffer.length + " slots full)");
+            notifyAll();
         } catch (InterruptedException e) {
             throw e;
         }
