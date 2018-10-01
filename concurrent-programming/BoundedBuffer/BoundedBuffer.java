@@ -19,18 +19,18 @@ String toString()
         [Item #393, ---, Item #395]
 */
 
-public class BoundedBuffer <T, E> {
+public class BoundedBuffer<E> {
 
     private E[] buffer;
     private int size;
 
-    BoundedBuffer() {
-        buffer = (E[]) new Object[3];
+    BoundedBuffer(int length) {
+        buffer = (E[]) new Object[length];
         size = 0;
     }
 
     // producer should insert until buffer is full
-    public synchronized void insert(E item, Producer producer) {
+    public synchronized void insert(E item, Producer producer) throws InterruptedException {
         try {
             while (size == buffer.length) {
                 System.out.println(producer.toString() + " waiting to insert item "
@@ -44,29 +44,36 @@ public class BoundedBuffer <T, E> {
                 + " (" + size + " of " + buffer.length + " slots full)");
             notify();
         } catch (InterruptedException e) {
-            System.err.println(e.getMessage());
+            throw e;
         }
     }
 
     // consumer should remove until buffer is empty
-    public synchronized E remove(Consumer consumer) {
+    public synchronized E remove(Consumer consumer) throws InterruptedException {
+        E removedItem = null;
+
         try {
             while (size == 0) {
                 System.out.println(consumer.toString() + " waiting to remove item");
                 wait();
             }
 
-            E removedItem = buffer[size];
+            removedItem = buffer[size];
             size--;
             System.out.println(consumer.toString() + " removed item " + removedItem.toString()
                 + " (" + size + " of " + buffer.length + " slots full)");
         } catch (InterruptedException e) {
-            System.err.println(e.getMessage());
+            throw e;
         }
+
         return removedItem;
     }
 
     public String toString() {
-        return "";
+        String s = "[";
+        for (E item : buffer) {
+            s += item + ", ";
+        }
+        return s + "]";
     }
 }

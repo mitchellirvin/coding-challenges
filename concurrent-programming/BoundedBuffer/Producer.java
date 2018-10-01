@@ -21,10 +21,24 @@ public class Producer extends Thread {
 
     private int id;
     private int quota;
+    private BoundedBuffer buffer;
 
-    Producer(int id, int quota) {
+    Producer(int id, int quota, BoundedBuffer buffer) {
         this.id = id;
         this.quota = quota;
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        try {
+            while (quota > 0) {
+                buffer.insert(new Item(((id - 1) * 20) + 21 - quota), this);
+                quota--;
+            }
+            System.out.println("Producer finished producing: " + 20 + " items");
+        } catch (InterruptedException e) {
+            System.out.println(this.toString() + " was interrupted");
+        }
     }
 
     public String toString() {
